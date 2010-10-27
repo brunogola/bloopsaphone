@@ -1,11 +1,16 @@
 #!/bin/env python
 
 from ctypes import *
+from ctypes.util import find_library
 
-## path
+BLOOPS_PATH = find_library("bloops")
 
-BLOOPS_PATH = "/home/bgola/workspace/pessoal/bloopsaphone/ext/python/bloops.so"
+if not BLOOPS_PATH:
+    raise ImportError, "bloopsaphone not found"
+
 lib = CDLL(BLOOPS_PATH)
+if not lib:
+    raise ImportError, "could not import bloopsaphone"
 
 ## bloopsaphone.h definitions
 
