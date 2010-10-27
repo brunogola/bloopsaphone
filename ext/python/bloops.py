@@ -3,8 +3,7 @@
 from ctypes import *
 from ctypes.util import find_library
 
-BLOOPS_PATH = find_library("bloops")
-
+BLOOPS_PATH = find_library("bloopsaphone")
 if not BLOOPS_PATH:
     raise ImportError, "bloopsaphone not found"
 
