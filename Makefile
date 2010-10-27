@@ -5,7 +5,7 @@ PREFIX = /usr/local
 CC = gcc
 AR = ar
 ARFLAGS = cr
-CFLAGS ?= -Wall
+CFLAGS ?= -Wall -fPIC -fno-strict-aliasing -g -Wall
 DEBUG ?= 0
 ECHO = /bin/echo
 INCS = -Ic
@@ -28,6 +28,7 @@ bloopsawhat: ${OBJ} c/bloopsawhat.o
 bloopsalib: ${OBJ} 
 	@${ECHO} LINK bloopsalib
 	@${AR} ${ARFLAGS} libbloopsaphone.a ${OBJ}
+	@${CC} -shared -o libbloopsaphone.so ${OBJ} ${CFLAGS} ${LDFLAGS} ${LIBS} -Wl,-export-dynamic,-soname,libbloopsaphone.so
 
 c/notation.c: c/notation.rl
 	@if [ "${RAGELV}" != "6.3" ]; then \
