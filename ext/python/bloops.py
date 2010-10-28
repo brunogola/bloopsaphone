@@ -221,15 +221,17 @@ lib.bloops_sound_destroy.argtypes = [POINTER(c_bloopsaphone)]
 # char *bloops_sound_str(bloopsaphone *);
 lib.bloops_track_str.argtypes = [POINTER(c_bloopsatrack)]
 lib.bloops_track_str.restype = c_char_p
-lib.bloops_fxcmd_name.argtypes = [POINTER(c_bloopsafxcmd)]
+lib.bloops_fxcmd_name.argtypes = [c_int]
 lib.bloops_fxcmd_name.restype = c_char_p
 lib.bloops_note_freq.argtypes = [c_char, c_int]
 lib.bloops_note_freq.restype = c_float
 lib.bloops_sound_str.argtypes = [POINTER(c_bloopsaphone)]
-lib.bloops_sound_str.restype = c_char_p (bloopsaphone *)
+lib.bloops_sound_str.restype = c_char_p
 
 def test():
     B = lib.bloops_new()
     P = lib.bloops_square()
     track = lib.bloops_track2(B, P, c_char_p("a b c d e f g + a b c d e f"))
     lib.bloops_play(B)
+
+
